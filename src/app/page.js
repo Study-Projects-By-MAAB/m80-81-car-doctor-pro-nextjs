@@ -1,9 +1,11 @@
-import Homepage from "@/components/Homepage/Homepage";
+import About from "@/components/Homepage/About";
+import Banner from "@/components/Homepage/Banner";
 
 export default function Home() {
     return (
         <main className="">
-            <Homepage />
+            <Banner />
+            <About />
         </main>
     );
 }
