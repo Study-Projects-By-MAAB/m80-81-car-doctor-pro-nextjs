@@ -1,8 +1,9 @@
+import Homepage from "@/components/Homepage/Homepage";
+
 export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            hello car doctor
-            <button className="btn btn-primary">button</button>
+        <main className="">
+            <Homepage />
         </main>
     );
 }
