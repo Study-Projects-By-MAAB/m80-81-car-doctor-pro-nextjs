@@ -18,7 +18,7 @@ const Banner = () => {
                         <div className="size-full text-white flex items-center pl-[100px]">
                             <div className="space-y-6">
                                 <h1 className="text-6xl font-bold max-w-[470px]">{banner.title}</h1>
-                                <p className="w-[522px]">{banner.description}</p>
+                                <p className="w-[522px] text-lg">{banner.description}</p>
                                 <div className="flex gap-5">
                                     <button className="btn btn-primary text-white">Discover More</button>
                                     <button className="btn btn-outline text-white ">Latest Project</button>
