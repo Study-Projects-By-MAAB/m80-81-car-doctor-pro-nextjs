@@ -8,6 +8,12 @@ import { FcGoogle } from "react-icons/fc";
 const page = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
+        const newUser = {
+            name: e.target.name.value,
+            email: e.target.email.value,
+            password: e.target.password.value,
+        }
+        console.log(newUser);
     };
     return (
         <div className="container mx-auto lg:p-24">
