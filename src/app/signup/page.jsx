@@ -12,8 +12,18 @@ const page = () => {
             name: e.target.name.value,
             email: e.target.email.value,
             password: e.target.password.value,
+        };
+        const resp = await fetch("http://localhost:3000/signup/api", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+        });
+
+        if (resp.status===200) {
+            e.target.reset()
         }
-        console.log(newUser);
     };
     return (
         <div className="container mx-auto lg:p-24">

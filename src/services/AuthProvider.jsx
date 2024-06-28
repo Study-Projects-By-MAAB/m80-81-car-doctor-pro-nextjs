@@ -2,7 +2,7 @@
 import React from "react";
 
 const AuthProvider = ({ children }) => {
-    return <div>{children}</div>;
+    return <>{children}</>;
 };
 
 export default AuthProvider;
