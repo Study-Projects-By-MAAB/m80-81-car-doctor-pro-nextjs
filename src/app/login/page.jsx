@@ -2,12 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { signIn } from "next-auth/react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const page = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const resp = signIn("credentials", { email, password, redirect: false });
+        console.log(resp);
     };
     return (
         <div className="container mx-auto lg:p-24">
