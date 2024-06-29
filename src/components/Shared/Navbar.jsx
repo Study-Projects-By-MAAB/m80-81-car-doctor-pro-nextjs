@@ -1,3 +1,5 @@
+"use client";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -5,6 +7,8 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 
 const Navbar = () => {
+    const session = useSession();
+    console.log(session);
     const navItems = [
         {
             title: "Home",
@@ -103,9 +107,18 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="flex items-center space-x-4">
-                        <HiOutlineShoppingBag className="text-xl"/>
-                        <IoSearchOutline className="text-xl"/>
+                        <HiOutlineShoppingBag className="text-xl" />
+                        <IoSearchOutline className="text-xl" />
                         <a className="btn btn-outline px-8 btn-primary">Appointment</a>
+                        {!session?.data?.user ? (
+                            <Link href={"/login"} className="btn btn-primary text-white">
+                                Login
+                            </Link>
+                        ) : (
+                            <button onClick={() => signOut()} className="btn btn-primary text-white">
+                                Logout
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

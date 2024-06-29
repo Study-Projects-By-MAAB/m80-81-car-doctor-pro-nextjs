@@ -5,7 +5,7 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
-const page = () => {
+const Page = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         const newUser = {
@@ -107,4 +107,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

@@ -5,14 +5,18 @@ import React from "react";
 import { signIn } from "next-auth/react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
+    const router = useRouter();
     const handleLogin = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const resp = signIn("credentials", { email, password, redirect: false });
-        console.log(resp);
+        const resp = await signIn("credentials", { email, password, redirect: false });
+        if (resp.status === 200) {
+            router.push("/");
+        }
     };
     return (
         <div className="container mx-auto lg:p-24">
@@ -85,4 +89,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
