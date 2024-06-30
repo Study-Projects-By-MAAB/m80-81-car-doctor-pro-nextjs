@@ -115,9 +115,21 @@ const Navbar = () => {
                                 Login
                             </Link>
                         ) : (
-                            <button onClick={() => signOut()} className="btn btn-primary text-white">
-                                Logout
-                            </button>
+                            <>
+                                {session?.data?.user?.image && (
+                                    <Image
+                                        alt={session?.data?.user.name}
+                                        height={40}
+                                        width={40}
+                                        src={session?.data?.user.image}
+                                        className="rounded-full"
+                                        title={session?.data?.user.name}
+                                    ></Image>
+                                )}
+                                <button onClick={() => signOut({ redirect: false })} className="btn btn-primary text-white">
+                                    Logout
+                                </button>
+                            </>
                         )}
                     </div>
                 </div>

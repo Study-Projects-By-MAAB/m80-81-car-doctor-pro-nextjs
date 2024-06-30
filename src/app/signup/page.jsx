@@ -1,9 +1,8 @@
 "use client";
+import SocialSignIn from "@/components/Shared/SocialSignIn";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 
 const Page = () => {
     const handleSignUp = async (e) => {
@@ -21,8 +20,8 @@ const Page = () => {
             body: JSON.stringify(newUser),
         });
 
-        if (resp.status===200) {
-            e.target.reset()
+        if (resp.status === 200) {
+            e.target.reset();
         }
     };
     return (
@@ -78,20 +77,7 @@ const Page = () => {
                                 Sign Up
                             </button>
                         </form>
-                        <div className="mt-8 text-center">
-                            <p>Or Sign In with</p>
-                            <div className="flex justify-center gap-4 mt-8 *:border-none *:bg-[#f5f5f8] *:rounded-full *:p-3 text-xl">
-                                {/* <button>
-                            <FaFacebookF className="text-blue-500" />
-                        </button> */}
-                                <button>
-                                    <FaGithub />
-                                </button>
-                                <button>
-                                    <FcGoogle />
-                                </button>
-                            </div>
-                        </div>
+                        <SocialSignIn></SocialSignIn>
                         <div className="mt-6 text-center">
                             <p>
                                 Already have an account?{" "}

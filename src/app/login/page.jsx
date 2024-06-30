@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { signIn } from "next-auth/react";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
+import SocialSignIn from "@/components/Shared/SocialSignIn";
 
 const Page = () => {
     const router = useRouter();
@@ -14,6 +13,7 @@ const Page = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         const resp = await signIn("credentials", { email, password, redirect: false });
+        console.log(resp);
         if (resp.status === 200) {
             router.push("/");
         }
@@ -60,20 +60,7 @@ const Page = () => {
                                 Login
                             </button>
                         </form>
-                        <div className="mt-8 text-center">
-                            <p>Or Sign In with</p>
-                            <div className="flex justify-center gap-4 mt-8 *:border-none *:bg-[#f5f5f8] *:rounded-full *:p-3 text-xl">
-                                {/* <button>
-                                    <FaFacebookF className="text-blue-500" />
-                                </button> */}
-                                <button>
-                                    <FaGithub />
-                                </button>
-                                <button>
-                                    <FcGoogle />
-                                </button>
-                            </div>
-                        </div>
+                        <SocialSignIn></SocialSignIn>
                         <div className="mt-6 text-center">
                             <p>
                                 Doesn&apos;t have an account?{" "}
