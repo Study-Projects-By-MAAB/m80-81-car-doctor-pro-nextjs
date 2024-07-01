@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FaGithub } from "react-icons/fa";
@@ -7,13 +7,15 @@ import { FcGoogle } from "react-icons/fc";
 
 const SocialSignIn = () => {
     const router = useRouter();
-    const handleSocialLogin = async (provider) => {
-        const resp = await signIn(provider);
+    const session = useSession();
+    console.log(session);
+    const handleSocialLogin = (provider) => {
+        const resp = signIn(provider, { redirect: false });
         console.log(resp);
-        if (resp?.status === "authenticated") {
-            router.push("/");
-        }
     };
+    if (session?.status === "authenticated") {
+        router.push("/");
+    }
     return (
         <div className="mt-8 text-center">
             <p>Or Sign In with</p>

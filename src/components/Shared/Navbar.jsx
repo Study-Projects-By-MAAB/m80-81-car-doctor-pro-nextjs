@@ -52,7 +52,16 @@ const Navbar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                         >
-                            <li>
+                            {navItems.map((item) => (
+                                <Link
+                                    key={item.path}
+                                    href={item.path}
+                                    className="font-semibold py-1 hover:text-primary duration-300"
+                                >
+                                    {item.title}
+                                </Link>
+                            ))}
+                            {/* <li>
                                 <a>Item 1</a>
                             </li>
                             <li>
@@ -68,7 +77,7 @@ const Navbar = () => {
                             </li>
                             <li>
                                 <a>Item 3</a>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                     <Link href={"/"} className="hidden lg:flex">
