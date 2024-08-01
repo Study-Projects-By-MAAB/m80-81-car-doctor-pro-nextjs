@@ -18,6 +18,25 @@ const Checkout = ({ params }) => {
     const { _id, title, description, img, price, facility } = service || {};
     const handleBooking = async (e) => {
         e.preventDefault();
+        const newBookings = {
+            email: data?.user?.email,
+            name: data?.user?.name,
+            address: e.target.address.value,
+            phone: e.target.phone.value,
+            date: e.target.date.value,
+            serviceTitle: title,
+            serviceId: _id,
+            price,
+        };
+
+        const resp = await fetch("http://localhost:3000/checkout/api/new-booking", {
+            method: "POST",
+            body: JSON.stringify(newBookings),
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        console.log(resp);
     };
 
     useEffect(() => {
