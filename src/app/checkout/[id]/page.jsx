@@ -15,7 +15,7 @@ const Checkout = ({ params }) => {
         }
     }, [params.id]);
 
-    const { _id, title, description, img, price, facility } = service || {};
+    const { _id, title, img, price } = service || {};
     const handleBooking = async (e) => {
         e.preventDefault();
         const newBookings = {
@@ -65,7 +65,13 @@ const Checkout = ({ params }) => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input value={data?.user?.name} type="text" name="name" className="input input-bordered" />
+                            <input
+                                defaultValue={data?.user?.name}
+                                readOnly
+                                type="text"
+                                name="name"
+                                className="input input-bordered"
+                            />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -83,7 +89,8 @@ const Checkout = ({ params }) => {
                                 <span className="label-text">Email</span>
                             </label>
                             <input
-                                value={data?.user?.email}
+                                defaultValue={data?.user?.email}
+                                readOnly
                                 type="text"
                                 name="email"
                                 placeholder="email"
@@ -94,13 +101,13 @@ const Checkout = ({ params }) => {
                             <label className="label">
                                 <span className="label-text">Due amount</span>
                             </label>
-                            <input value={price} readOnly type="text" name="price" className="input input-bordered" />
+                            <input defaultValue={price} readOnly type="text" name="price" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Phone</span>
                             </label>
-                            <input required type="text" name="phone" placeholder="Your Phone" className="input input-bordered" />
+                            <input required type="number" name="phone" placeholder="Your Phone" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -110,7 +117,7 @@ const Checkout = ({ params }) => {
                         </div>
                     </div>
                     <div className="form-control mt-6">
-                        <input className="btn btn-primary btn-block" type="submit" value="Order Confirm" />
+                        <input className="btn btn-primary btn-block" type="submit" defaultValue="Order Confirm" />
                     </div>
                 </form>
             </div>
