@@ -1,19 +1,34 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const Page = () => {
     const session = useSession();
     const [bookings, setBookings] = useState([]);
-    const loadData = async () => {
-        const res = await fetch(`http://localhost:3000/my-bookings/api/${session?.data?.user?.email}`);
-        const data = await res.json();
-        setBookings(data.myBookings);
+
+    const loadData = useCallback(async () => {
+        {
+            const res = await fetch(`http://localhost:3000/my-bookings/api/${session?.data?.user?.email}`);
+            const data = await res.json();
+            setBookings(data.myBookings);
+        }
+    }, [session]);
+
+    const handleDelete = async (id) => {
+        const deleted = await fetch(`http://localhost:3000/my-bookings/api/delete-booking/${id}`, {
+            method: "DELETE",
+        });
+        const resp = await deleted.json();
+
+        if (resp?.response?.deletedCount > 0) {
+            loadData();
+        }
     };
+
     useEffect(() => {
         loadData();
-    }, [session]);
+    }, [session, loadData]);
 
     return (
         <div className="container mx-auto">
@@ -53,7 +68,9 @@ const Page = () => {
                                     <td>
                                         <div className="flex items-center space-x-3 *:text-white">
                                             <button className="btn btn-primary">Edit</button>
-                                            <button className="btn btn-error">Delete</button>
+                                            <button onClick={() => handleDelete(_id)} className="btn btn-error">
+                                                Delete
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
