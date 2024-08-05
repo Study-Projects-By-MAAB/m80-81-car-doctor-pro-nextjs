@@ -3,6 +3,7 @@ import { getServiceDetails } from "@/services/getServices";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Checkout = ({ params }) => {
     const { data } = useSession();
@@ -36,7 +37,9 @@ const Checkout = ({ params }) => {
                 "content-type": "application/json",
             },
         });
-        console.log(resp);
+        const response = await resp.json();
+        toast.success(response?.message);
+        e.target.reset();
     };
 
     useEffect(() => {
@@ -107,7 +110,13 @@ const Checkout = ({ params }) => {
                             <label className="label">
                                 <span className="label-text">Phone</span>
                             </label>
-                            <input required type="number" name="phone" placeholder="Your Phone" className="input input-bordered" />
+                            <input
+                                required
+                                type="number"
+                                name="phone"
+                                placeholder="Your Phone"
+                                className="input input-bordered"
+                            />
                         </div>
                         <div className="form-control">
                             <label className="label">

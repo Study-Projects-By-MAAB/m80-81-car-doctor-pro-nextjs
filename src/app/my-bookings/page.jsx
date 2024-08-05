@@ -16,7 +16,7 @@ const Page = () => {
     }, [session]);
 
     const handleDelete = async (id) => {
-        const deleted = await fetch(`http://localhost:3000/my-bookings/api/delete-booking/${id}`, {
+        const deleted = await fetch(`http://localhost:3000/my-bookings/api/booking/${id}`, {
             method: "DELETE",
         });
         const resp = await deleted.json();
