@@ -12,6 +12,22 @@ export const DELETE = async (request, { params }) => {
     }
 };
 
+export const PATCH = async (request, { params }) => {
+    const db = await connectDB();
+    const bookingsCollection = await db.collection("bookings");
+    const { date, phone, address } = await request.json();
+    try {
+        const resp = await bookingsCollection.updateOne(
+            { _id: new ObjectId(params.id) },
+            { $set: { date, phone, address } },
+            { upsert: true },
+        );
+        return Response.json({ message: "Updated the booking.", response: resp });
+    } catch (error) {
+        Response.json({ message: "Something went wrong!" });
+    }
+};
+
 export const GET = async (request, { params }) => {
     const db = await connectDB();
     const bookingsCollection = await db.collection("bookings");
