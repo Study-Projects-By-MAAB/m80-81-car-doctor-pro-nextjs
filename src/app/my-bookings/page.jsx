@@ -1,6 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 
 const Page = () => {
@@ -67,7 +68,9 @@ const Page = () => {
                                     <td>{date}</td>
                                     <td>
                                         <div className="flex items-center space-x-3 *:text-white">
-                                            <button className="btn btn-primary">Edit</button>
+                                            <Link href={`/my-bookings/update/${_id}`}>
+                                                <button className="btn btn-primary">Edit</button>
+                                            </Link>
                                             <button onClick={() => handleDelete(_id)} className="btn btn-error">
                                                 Delete
                                             </button>
