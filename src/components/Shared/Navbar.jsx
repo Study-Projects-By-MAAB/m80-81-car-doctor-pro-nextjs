@@ -139,7 +139,7 @@ const Navbar = () => {
                                         title={session?.data?.user.name}
                                     ></Image>
                                 )}
-                                <button onClick={() => signOut({ redirect: false })} className="btn btn-primary text-white">
+                                <button onClick={() => signOut()} className="btn btn-primary text-white">
                                     Logout
                                 </button>
                             </>

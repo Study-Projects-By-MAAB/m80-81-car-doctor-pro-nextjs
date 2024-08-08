@@ -1,21 +1,24 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SocialSignIn = () => {
-    const router = useRouter();
+    // const router = useRouter();
     const session = useSession();
+    const searchParams = useSearchParams();
+    const path = searchParams.get("redirect");
+
     console.log(session);
     const handleSocialLogin = (provider) => {
-        const resp = signIn(provider, { redirect: false });
+        const resp = signIn(provider, { redirect: true, callbackUrl: path ? path : "/" });
         console.log(resp);
     };
-    if (session?.status === "authenticated") {
-        router.push("/");
-    }
+    // if (session?.status === "authenticated") {
+    //     router.push("/");
+    // }
     return (
         <div className="mt-8 text-center">
             <p>Or Sign In with</p>
