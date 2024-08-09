@@ -9,5 +9,6 @@ export const GET = async () => {
         return NextResponse.json({ services });
     } catch (error) {
         console.log(error);
+        return NextResponse.json({ message: "No data found!", error });
     }
 };

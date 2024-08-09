@@ -12,7 +12,7 @@ const Page = () => {
             email: e.target.email.value,
             password: e.target.password.value,
         };
-        const resp = await fetch("http://localhost:3000/signup/api", {
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/signup/api`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

@@ -10,14 +10,14 @@ const Page = () => {
 
     const loadData = useCallback(async () => {
         {
-            const res = await fetch(`http://localhost:3000/my-bookings/api/${session?.data?.user?.email}`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/${session?.data?.user?.email}`);
             const data = await res.json();
             setBookings(data.myBookings);
         }
     }, [session]);
 
     const handleDelete = async (id) => {
-        const deleted = await fetch(`http://localhost:3000/my-bookings/api/booking/${id}`, {
+        const deleted = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${id}`, {
             method: "DELETE",
         });
         const resp = await deleted.json();

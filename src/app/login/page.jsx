@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import SocialSignIn from "@/components/Shared/SocialSignIn";
 
 const Page = () => {
-    const router = useRouter();
+    // const router = useRouter();
     const searchParams = useSearchParams();
     const path = searchParams.get("redirect");
 

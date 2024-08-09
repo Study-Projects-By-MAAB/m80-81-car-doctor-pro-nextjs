@@ -10,7 +10,7 @@ const Page = ({ params }) => {
 
     const loadBooking = useCallback(async () => {
         {
-            const res = await fetch(`http://localhost:3000/my-bookings/api/booking/${params.id}`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${params.id}`);
             const bookingDetails = await res.json();
             setBooking(bookingDetails.data);
         }
@@ -26,7 +26,7 @@ const Page = ({ params }) => {
             date: e.target.date.value,
         };
 
-        const resp = await fetch(`http://localhost:3000/my-bookings/api/booking/${_id}`, {
+        const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/my-bookings/api/booking/${_id}`, {
             method: "PATCH",
             body: JSON.stringify(updateBookings),
             headers: {
